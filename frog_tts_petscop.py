@@ -1,11 +1,11 @@
 from contextlib import redirect_stdout
 from datetime import timedelta
 from io import StringIO
+from math import ceil
 from pathlib import Path
 from subprocess import run
 from time import perf_counter
 from uuid import uuid4
-from math import ceil
 
 import argh
 import nltk
@@ -53,12 +53,19 @@ def main() -> None:
     assert tts.synthesizer is not None, "TTS model does not have a synthesizer?"
     sample_rate = tts.synthesizer.output_sample_rate
 
-    print("\033c",end="")  # Clear console
+    print("\033c", end="")  # Clear console
 
     # Break the sentences into batches of 500, and generate audio for each batch.
     # This is done to avoid WAV limitations (and also because otherwise we'd use a lot of RAM)
     # We can just concatenate it all together later.
-    for j, sentences in enumerate(tqdm(batched(all_sentences, 500), desc="Batches", unit="batch", total=ceil(len(all_sentences) / 500))):
+    for j, sentences in enumerate(
+        tqdm(
+            batched(all_sentences, 500),
+            desc="Batches",
+            unit="batch",
+            total=ceil(len(all_sentences) / 500),
+        )
+    ):
         audio_arrays = []
         subtitles = []
 

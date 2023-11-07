@@ -8,8 +8,8 @@ run-frog:
     cls && venv/Scripts/python.exe frog_tts_petscop.py
 
 format:
-    black .\bark_petscop.py -l100 -t py311 --preview
-    isort .\bark_petscop.py
+    black . -l100 -t py311 --preview
+    isort .
 
 install arg:
     venv/Scripts/python.exe -m pip install "{{arg}}"
