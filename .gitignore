@@ -244,3 +244,4 @@ text.txt
 joblib_cache/
 *.wav
 *.jpg
+*.srt

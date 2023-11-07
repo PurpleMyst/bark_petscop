@@ -135,8 +135,8 @@ def main() -> None:
                 filter_complex = ";".join(
                     (
                         "[0:v]pad=ceil(iw/2)*2:ceil(ih/2)*2[img]",
-                        "[1:a]showwaves=mode=line:s=hd480:colors=Yellow@0.5|Blue@0.5:scale=sqrt,format=yuva420p[waves]",
-                        "[img][waves]overlay=format=auto[out]",
+                        "[1:a]showwaves=mode=line:s=xga:colors=Blue@0.5|Yellow@0.5:scale=sqrt,format=yuva420p[waves]",
+                        "[img][waves]overlay=x=(W-w)/2:y=(H-h)/2[out]",
                     )
                 )
                 cmd = (
@@ -156,8 +156,14 @@ def main() -> None:
                     filter_complex,
                     "-map",
                     "[out]",
+                    "-map",
+                    "1:a",
+                    "-map",
+                    "2:s",
                     "-c:v",
-                    "h264_nvenc",
+                    "libx264",
+                    "-crf",
+                    "28",
                     "-shortest",
                     "-c:s",
                     "copy",
