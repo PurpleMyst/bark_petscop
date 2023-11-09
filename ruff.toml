@@ -1,0 +1,21 @@
+line-length = 100
+show-fixes = true
+
+[lint]
+select=["ALL"]
+# select = [
+#     # pycodestyle
+#     "E",
+#     # Pyflakes
+#     "F",
+#     # pyupgrade
+#     "UP",
+#     # flake8-bugbear
+#     "B",
+#     # flake8-simplify
+#     "SIM",
+#     # isort
+#     "I",
+# ]
+ignore=["D","ANN","FA102","A001","COM812","ISC001","E501","PLR0913", "S"]
+
