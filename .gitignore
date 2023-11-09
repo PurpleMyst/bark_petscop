@@ -245,3 +245,4 @@ joblib_cache/
 *.wav
 *.jpg
 *.srt
+*.md
